@@ -2,8 +2,8 @@
 
 # Group Members
 
-Rahul Vast(17104042)
-Shruti Sawant(18204001)
+Rahul Vast(17104042),
+Shruti Sawant(18204001),
 Aishwarya Thorbole(18204002)
 
 # Project Implementation
