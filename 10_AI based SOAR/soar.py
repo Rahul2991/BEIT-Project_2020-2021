@@ -108,7 +108,7 @@ try:
                     ai_res=json.dumps(ai_res)
                     op='{"timestamp":"'+ str(datetime.now()) +'",'+ai_res[1:-1]+','+ds[1:-1]+','+res[1:-1]+','+cve[1:]
                     print(op)
-                    send=elastic_client.index(index='event_profile',id=get_random_string(20),body=json.loads(op))
+                    send=elastic_client.index(index='event_profile',id=get_random_string(20),body=json.loads(op)) # 'event_profile' is the index name in elasticsearch
                     print(send)
                 else:
                     pprint(qu[0]['_source'])
