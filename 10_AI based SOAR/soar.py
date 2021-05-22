@@ -16,14 +16,14 @@ from datetime import datetime
 
 print('Starting. Please Wait......')
 
-lgbm_model = lgb.Booster(model_file="H:\\jupyter\\ember\\ember_model_2018.txt")
-vtotal = Virustotal(API_VERSION="v3")
+lgbm_model = lgb.Booster(model_file="H:\\jupyter\\ember\\ember_model_2018.txt") # Trained model location
+vtotal = Virustotal(API_VERSION="v3") # ADD API Key to your environment variables
 base = "https://cve.circl.lu/api/cve/"
 previous_op=''
 link=urllib3.PoolManager()
 
-elastic_client = Elasticsearch(['192.168.43.85'],
-    http_auth=('elastic', 'NTbVp8sgEASDiIcHf8Eg'))
+elastic_client = Elasticsearch(['localhost'],
+    http_auth=('username', 'password'))
 
 def get_random_string(length):
     letters = string.ascii_lowercase
@@ -109,8 +109,6 @@ try:
                     op='{"timestamp":"'+ str(datetime.now()) +'",'+ai_res[1:-1]+','+ds[1:-1]+','+res[1:-1]+','+cve[1:]
                     print(op)
                     send=elastic_client.index(index='event_profile',id=get_random_string(20),body=json.loads(op))
-                    #url2="http://elastic:NTbVp8sgEASDiIcHf8Eg@192.168.43.85:9200/event_profile/_doc/"+get_random_string(20)
-                    #result=link.request('POST',url2,headers={'Content-Type': 'application/json'},body=json.dumps(op))
                     print(send)
                 else:
                     pprint(qu[0]['_source'])
